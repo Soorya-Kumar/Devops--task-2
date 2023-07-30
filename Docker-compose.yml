@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./Frontend  
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000' 
+      
+  backend1:
+    build:
+      context: ./Backend 
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'  
+
+  backend2:
+    build:
+      context: ./Backend 
+      dockerfile: Dockerfile
+    ports:
+      - '8001:8000' 
+
+  nginx:
+    build:
+      image: nginx
+      ports:
+      - "80:80"
+      volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
